@@ -15,9 +15,24 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/" routerLinkActive="active-link">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active-link">Link</a>
-        </li>
+        <div *ngIf="!checkLogin">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active-link">Login</a>
+          </li>
+        </div>
+
+        <div *ngIf="checkLogin">
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLinkActive="active-link">{{name}}</a>
+          </li>
+          <li class="nav-item">
+            <img src="{{avatar}}" alt="Avatar" height="40px"/>
+          </li>
+          <li class="nav-item">
+            <button (click)="logout()">Logout</button>
+          </li>
+        </div>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
