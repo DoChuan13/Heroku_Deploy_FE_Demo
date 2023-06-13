@@ -1,0 +1,60 @@
+<div class="container" style="margin-top: 60px">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px; margin-bottom: 20px">
+            <mat-card>
+                <form #f="ngForm" (ngSubmit)="f.form.valid && register()" class="form-angular">
+                    <mat-error>{{status}}</mat-error>
+                    <p>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input [(ngModel)]="form.name" matInput placeholder="Placeholder" required minlength="3"
+                                   maxlength="50" name="name" #name="ngModel">
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-error *ngIf="name.hasError('required')">The name is Required</mat-error>
+                            <mat-error *ngIf="name.hasError('minlength')">The name must at least 3 characters
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="fill">
+                            <mat-label>UserName</mat-label>
+                            <input [(ngModel)]="form.username" matInput placeholder="Placeholder" required minlength="3"
+                                   maxlength="50" name="username" #username="ngModel">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <mat-error *ngIf="username.hasError('required')">The username is Required</mat-error>
+                            <mat-error *ngIf="username.hasError('minlength')">The name must at least 3 characters
+                            </mat-error>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input name="email" [(ngModel)]="form.email" matInput [formControl]="emailFormValidate"
+                                   required>
+                            <mat-error *ngIf="emailFormValidate.hasError('required')">The email is Required</mat-error>
+                            <mat-error *ngIf="emailFormValidate.hasError('email')">Invalid</mat-error>
+                            <mat-icon matSuffix>mail</mat-icon>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput name="password" [(ngModel)]="form.password" #password="ngModel"
+                                   [type]="hide ? 'password' : 'text'" required minlength="6" maxlength="100">
+                            <mat-error *ngIf="password.hasError('required')">The password is Required</mat-error>
+                            <mat-error *ngIf="password.hasError('minlength')">Password at least 6 character</mat-error>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </p>
+                    <button type="submit" mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">
+                        Register
+                        <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
